@@ -14,9 +14,22 @@
           Cliente Criado com Sucesso
         </div>
         {% endif %}
+        {% if idade_cliente == 'menor_idade' %}
+          <div class="alert alert-danger" role="alert">
+            Erro: O cliente precisa ter mais de 18 para conseguir se registrar
+          </div>
+        {% endif %}
+        {% if idade_cliente == 'idade_invalida' %}
+          <div class="alert alert-danger" role="alert">
+            Erro: Digite uma Idade Válida!
+          </div>
+        {% endif %}
         <form action="{% url "registrar_cliente" %}"method='post'>{% csrf_token %}
             <label for="nome_cliente">Nome do Cliente:</label>
-            <input type="text" name="nome_cliente" id="nome_cliente" class="form-control">
+            <input type="text" name="nome_cliente" id="nome_cliente" class="form-control" required>
+            <br>
+            <label for="idade">Idade:</label>
+            <input type="number" name="idade" id="idade" class="form-control" required>
             <br>
             <input type="submit" value="Enviar" class='btn btn-primary'>
         </form>
